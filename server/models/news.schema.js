@@ -1,15 +1,27 @@
 const mongoose = require('mongoose')
 
-const newsSChema = mongoose.Schema({
-    title: {
+const newsSchema = mongoose.Schema({
+    img: {
         type:String,
-        require: true
+        required: true
     },
-
-    description: {
+    description:{
         type:String,
-        require:true
+        required: true
     },
-
-    
+    like:{
+        type: Number,
+        default: 0
+    },
+    dislike:{
+        type: Number,
+        default: 0
+    },
+    category:{
+        type: mongoose.Types.ObjectId,
+        required: true,
+        ref: "category"
+    }
 })
+
+module.exports = mongoose.model('Category', newsSchema)
